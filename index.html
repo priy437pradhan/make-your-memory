@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memories Forever - 3D Hand Casting | Priyabrata Pradhan</title>
+<meta name="description" content="Memories Forever creates lifelike 3D hand and feet castings for babies, couples, parents and families. Doorstep casting service and DIY kits. Call 9583 178444.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Great+Vibes&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maroon:#7a1f2b;
+  --maroon-dark:#5c1520;
+  --gold:#c8932e;
+  --gold-light:#e7c27a;
+  --brown:#4e3220;
+  --cream:#f5ede1;
+  --cream-dark:#e9dcc7;
+  --text:#2c2420;
+  --muted:#6f625a;
+  --white:#ffffff;
+  --shadow:0 10px 30px rgba(78,50,32,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',Arial,sans-serif;color:var(--text);background:var(--white);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;color:var(--brown);line-height:1.2}
+.script{font-family:'Great Vibes',cursive;color:var(--maroon);font-weight:400}
+
+/* Image placeholders: drop your photos into an "images" folder */
+.ph{position:relative;overflow:hidden;background:linear-gradient(135deg,#d9b56b 0%,#b8862f 45%,#8a5a1c 100%)}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph.noimg::after{content:attr(data-label);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;color:#fff;font-family:'Playfair Display',serif;font-size:1rem;letter-spacing:.5px;text-shadow:0 1px 3px rgba(0,0,0,.3)}
+
+/* Top bar */
+.topbar{background:var(--maroon);color:#fff;font-size:.85rem;text-align:center;padding:8px 12px;letter-spacing:.3px}
+.topbar a{color:var(--gold-light);font-weight:600}
+
+/* Header */
+header{background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.header-left,.header-right{flex:1;display:flex;align-items:center;gap:18px}
+.header-right{justify-content:flex-end}
+.icon-btn{width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;color:var(--brown);transition:background .2s,color .2s;background:none;border:0;cursor:pointer}
+.icon-btn:hover{background:var(--cream);color:var(--maroon)}
+.icon-btn svg{width:22px;height:22px}
+.header-phone{font-size:.95rem;font-weight:500;color:var(--brown)}
+.header-phone span{display:block;font-size:.72rem;color:var(--muted);font-weight:400;letter-spacing:.5px;text-transform:uppercase}
+.menu-toggle{display:none}
+.logo{display:flex;align-items:center;gap:10px}
+.logo svg{width:54px;height:54px}
+.logo-text{line-height:1}
+.logo-text b{display:block;font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--maroon);font-weight:700}
+.logo-text i{display:block;font-family:'Great Vibes',cursive;font-style:normal;font-size:1.45rem;color:var(--gold);margin-top:-2px}
+.logo-text small{display:block;font-size:.6rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px}
+
+/* Nav */
+nav.main-nav{border-top:1px solid #f0e8dc}
+.nav-list{display:flex;justify-content:center;gap:42px}
+.nav-list>li{position:relative}
+.nav-list>li>a{display:flex;align-items:center;gap:5px;padding:16px 0;font-size:1.08rem;font-weight:500;color:var(--text);transition:color .2s}
+.nav-list>li>a:hover,.nav-list>li>a.active{color:var(--maroon)}
+.nav-list .caret{width:10px;height:10px;transition:transform .2s}
+.dropdown{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(10px);min-width:230px;background:#fff;box-shadow:var(--shadow);border-radius:8px;padding:10px 0;opacity:0;visibility:hidden;transition:all .25s;border-top:3px solid var(--gold)}
+.dropdown a{display:block;padding:10px 22px;font-size:.95rem;color:var(--text)}
+.dropdown a:hover{background:var(--cream);color:var(--maroon)}
+.nav-list>li:hover .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+
+/* Hero slider */
+.hero{position:relative;background:var(--cream);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(255,255,255,.7),transparent 55%),radial-gradient(circle at 80% 80%,rgba(200,147,46,.12),transparent 50%);pointer-events:none}
+.slides{position:relative;min-height:560px}
+.slide{position:absolute;inset:0;display:flex;align-items:center;opacity:0;visibility:hidden;transition:opacity .8s ease,visibility .8s}
+.slide.active{opacity:1;visibility:visible;position:relative}
+.slide-inner{display:flex;align-items:center;gap:40px;width:100%;padding:50px 0}
+.slide-text{flex:1.1;position:relative;z-index:2}
+.slide-text h1{font-size:3.6rem;font-weight:600;color:var(--brown)}
+.slide-text h1 .script{font-size:4.4rem;display:inline-block;margin-right:8px}
+.ornament{display:flex;align-items:center;gap:10px;margin:22px 0;color:var(--brown);max-width:420px}
+.ornament::before,.ornament::after{content:"";flex:1;height:1px;background:var(--brown)}
+.ornament svg{width:70px;height:20px}
+.slide-tag{font-size:1.05rem;letter-spacing:6px;color:var(--maroon);text-transform:uppercase;font-weight:500}
+.hero-btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:40px;font-weight:500;font-size:.98rem;transition:all .25s;cursor:pointer;border:2px solid transparent;font-family:inherit}
+.btn svg{width:18px;height:18px}
+.btn-primary{background:var(--maroon);color:#fff}
+.btn-primary:hover{background:var(--maroon-dark);transform:translateY(-2px)}
+.btn-outline{border-color:var(--brown);color:var(--brown);background:transparent}
+.btn-outline:hover{background:var(--brown);color:#fff}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:#ad7c22}
+.btn-wa{background:#25d366;color:#fff}
+.btn-wa:hover{background:#1ebe5a}
+
+.collage{flex:1;position:relative;height:460px}
+.polaroid{position:absolute;background:#fff;padding:10px 10px 34px;box-shadow:0 12px 28px rgba(0,0,0,.18);border-radius:3px}
+.polaroid .ph{width:100%;height:100%}
+.polaroid span{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-family:'Great Vibes',cursive;font-size:1.3rem;color:var(--maroon)}
+.p1{width:46%;height:52%;top:0;left:4%;transform:rotate(-5deg)}
+.p2{width:50%;height:62%;top:8%;right:0;transform:rotate(4deg);z-index:2}
+.p3{width:48%;height:50%;bottom:0;left:12%;transform:rotate(3deg);z-index:3}
+.slider-dots{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:5}
+.slider-dots button{width:11px;height:11px;border-radius:50%;border:0;background:rgba(78,50,32,.3);cursor:pointer;transition:all .3s}
+.slider-dots button.active{background:var(--maroon);width:30px;border-radius:6px}
+.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.85);border:0;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center;color:var(--brown);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.slider-arrow:hover{background:#fff;color:var(--maroon)}
+.slider-arrow svg{width:20px;height:20px}
+.prev{left:14px}.next{right:14px}
+
+/* Sections */
+section{padding:90px 0}
+.section-head{text-align:center;max-width:680px;margin:0 auto 50px}
+.section-head .eyebrow{display:inline-block;font-size:.85rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px}
+.section-head h2{font-size:2.6rem;color:var(--maroon)}
+.section-head p{color:var(--muted);margin-top:14px;font-size:1.05rem}
+.dash-line{width:100%;max-width:480px;border-top:2px dashed var(--brown);margin-bottom:22px;opacity:.7}
+
+/* What is */
+.what{display:flex;align-items:center;gap:70px}
+.what-img{flex:1}
+.what-img .ph{height:480px;border-radius:6px;box-shadow:var(--shadow)}
+.what-text{flex:1}
+.what-text h2{font-size:2.6rem;color:var(--maroon);margin-bottom:20px}
+.what-text p{font-size:1.1rem;color:var(--text);margin-bottom:16px;line-height:1.9}
+.checks{margin:22px 0 30px}
+.checks li{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px;font-size:1.02rem}
+.checks svg{width:22px;height:22px;flex-shrink:0;color:var(--gold);margin-top:2px}
+
+/* Services */
+.bg-cream{background:var(--cream)}
+.grid{display:grid;gap:28px}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 6px 20px rgba(78,50,32,.08);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.card .ph{height:240px}
+.card-body{padding:22px 22px 26px;flex:1;display:flex;flex-direction:column}
+.card-body h3{font-size:1.35rem;margin-bottom:8px;color:var(--maroon)}
+.card-body p{color:var(--muted);font-size:.97rem;flex:1}
+.card-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;color:var(--maroon);font-weight:600;font-size:.95rem}
+.card-link:hover{color:var(--gold)}
+.card-link svg{width:16px;height:16px}
+.badge{position:absolute;top:14px;left:14px;background:var(--maroon);color:#fff;font-size:.75rem;padding:4px 12px;border-radius:20px;letter-spacing:.5px;z-index:2}
+
+/* Steps */
+.steps{counter-reset:step}
+.step{text-align:center;padding:34px 22px;background:#fff;border-radius:10px;position:relative;border:1px solid var(--cream-dark)}
+.step-num{width:64px;height:64px;margin:0 auto 18px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;color:var(--maroon);border:2px dashed var(--gold)}
+.step-num svg{width:28px;height:28px}
+.step h3{font-size:1.2rem;margin-bottom:8px}
+.step p{color:var(--muted);font-size:.95rem}
+.step small{position:absolute;top:14px;right:18px;font-family:'Playfair Display',serif;font-size:2rem;color:var(--cream-dark);font-weight:700}
+.doorstep-cta{margin-top:44px;text-align:center}
+
+/* Finishes */
+.finishes{display:flex;flex-wrap:wrap;justify-content:center;gap:34px}
+.finish{text-align:center}
+.swatch{width:96px;height:96px;border-radius:50%;margin:0 auto 12px;box-shadow:inset 0 -8px 16px rgba(0,0,0,.18),0 6px 16px rgba(0,0,0,.12);border:4px solid #fff}
+.finish span{font-weight:500;color:var(--brown)}
+.f-gold{background:radial-gradient(circle at 30% 30%,#f7dc8f,#c8932e 55%,#8a5a1c)}
+.f-silver{background:radial-gradient(circle at 30% 30%,#fafafa,#bfc3c7 55%,#7c8085)}
+.f-white{background:radial-gradient(circle at 30% 30%,#fff,#ece7df 60%,#c9c1b4)}
+.f-bronze{background:radial-gradient(circle at 30% 30%,#e3a76f,#a8652c 55%,#5f3413)}
+.f-rose{background:radial-gradient(circle at 30% 30%,#fbd3c8,#d99583 55%,#9c5a4a)}
+.f-copper{background:radial-gradient(circle at 30% 30%,#f2a77b,#c46a3a 55%,#7a3818)}
+
+/* Occasions */
+.occasions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.occasion{padding:12px 26px;border-radius:40px;background:#fff;border:1px solid var(--cream-dark);font-weight:500;color:var(--brown);transition:all .2s}
+.occasion:hover{background:var(--maroon);color:#fff;border-color:var(--maroon)}
+
+/* About */
+.about{display:flex;gap:60px;align-items:center}
+.about-img{flex:0 0 400px}
+.about-img .ph{height:460px;border-radius:200px 200px 10px 10px;box-shadow:var(--shadow)}
+.about-text{flex:1}
+.about-text .script{font-size:2.6rem;display:block;margin-bottom:4px}
+.about-text h2{font-size:2.4rem;margin-bottom:6px}
+.about-text .role{color:var(--gold);font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:.85rem;margin-bottom:20px;display:block}
+.about-text p{font-size:1.05rem;margin-bottom:14px;color:var(--text)}
+.stats{display:flex;gap:40px;margin-top:28px;flex-wrap:wrap}
+.stat b{display:block;font-family:'Playfair Display',serif;font-size:2.1rem;color:var(--maroon)}
+.stat span{color:var(--muted);font-size:.9rem}
+
+/* FAQ */
+.faq{max-width:820px;margin:0 auto}
+.faq-item{background:#fff;border-radius:8px;margin-bottom:14px;border:1px solid var(--cream-dark);overflow:hidden}
+.faq-q{width:100%;text-align:left;background:none;border:0;padding:20px 24px;font-family:inherit;font-size:1.05rem;font-weight:500;color:var(--brown);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.faq-q svg{width:18px;height:18px;flex-shrink:0;transition:transform .3s;color:var(--maroon)}
+.faq-item.open .faq-q svg{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{padding:0 24px 20px;color:var(--muted)}
+
+/* Contact */
+.contact{display:flex;gap:50px;align-items:stretch}
+.contact-info{flex:1;background:var(--maroon);color:#fff;border-radius:12px;padding:44px 38px;position:relative;overflow:hidden}
+.contact-info::after{content:"";position:absolute;right:-60px;bottom:-60px;width:220px;height:220px;border-radius:50%;border:30px solid rgba(255,255,255,.06)}
+.contact-info h2{color:#fff;font-size:2rem;margin-bottom:8px}
+.contact-info>p{opacity:.85;margin-bottom:30px}
+.ci{display:flex;gap:16px;align-items:center;margin-bottom:24px}
+.ci-icon{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ci-icon svg{width:22px;height:22px;color:var(--gold-light)}
+.ci small{display:block;opacity:.7;font-size:.8rem;letter-spacing:1px;text-transform:uppercase}
+.ci b{font-size:1.15rem;font-weight:500}
+.contact-form{flex:1.2;background:#fff;border-radius:12px;padding:44px 38px;box-shadow:var(--shadow)}
+.contact-form h3{font-size:1.6rem;color:var(--maroon);margin-bottom:6px}
+.contact-form>p{color:var(--muted);margin-bottom:24px;font-size:.95rem}
+.form-row{display:flex;gap:16px}
+.form-row .field{flex:1}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.88rem;font-weight:500;margin-bottom:6px;color:var(--brown)}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1px solid #ddd2c2;border-radius:6px;font-family:inherit;font-size:.98rem;background:#fdfbf8;color:var(--text);transition:border-color .2s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);background:#fff}
+.field textarea{resize:vertical;min-height:100px}
+.form-error{color:#b3261e;font-size:.88rem;margin-bottom:12px;display:none}
+
+/* Footer */
+footer{background:#2b1d14;color:#d8cbbb;padding:64px 0 0}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px}
+footer .logo-text b{color:#fff}
+footer p{font-size:.95rem;margin-top:16px;opacity:.85}
+footer h4{color:#fff;font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:16px}
+footer ul li{margin-bottom:10px}
+footer ul a{opacity:.85;transition:color .2s}
+footer ul a:hover{color:var(--gold-light);opacity:1}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:50px;padding:20px 0;text-align:center;font-size:.88rem;opacity:.7}
+
+/* Floating buttons */
+.float-btns{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:12px;z-index:200}
+.float-btns a{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25);transition:transform .2s}
+.float-btns a:hover{transform:scale(1.08)}
+.float-btns svg{width:28px;height:28px}
+.fb-wa{background:#25d366}
+.fb-call{background:var(--maroon)}
+
+/* Reveal animation */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1024px){
+  .slide-text h1{font-size:3.2rem}
+  .slide-text h1 .script{font-size:3.9rem}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .what{gap:40px}
+  .about-img{flex:0 0 320px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .nav-list{gap:28px}
+}
+@media (max-width:860px){
+  .menu-toggle{display:inline-flex}
+  .header-phone{display:none}
+  .logo svg{width:42px;height:42px}
+  .logo-text b{font-size:1.25rem}
+  .logo-text i{font-size:1.15rem}
+  .logo-text small{display:none}
+  .header-right .hide-sm{display:none}
+  nav.main-nav{position:fixed;top:0;left:0;bottom:0;width:84%;max-width:330px;background:#fff;transform:translateX(-100%);transition:transform .35s ease;z-index:300;overflow-y:auto;border:0;box-shadow:4px 0 24px rgba(0,0,0,.15);padding-top:70px}
+  nav.main-nav.open{transform:none}
+  .nav-close{position:absolute;top:14px;right:14px}
+  .nav-list{flex-direction:column;gap:0}
+  .nav-list>li{border-bottom:1px solid #f2ebe0}
+  .nav-list>li>a{padding:16px 24px;justify-content:space-between}
+  .dropdown{position:static;transform:none;opacity:1;visibility:visible;box-shadow:none;border:0;border-radius:0;max-height:0;overflow:hidden;padding:0;background:var(--cream);transition:max-height .3s ease;min-width:0}
+  .nav-list>li:hover .dropdown{transform:none}
+  .nav-list>li.open .dropdown{max-height:400px}
+  .nav-list>li.open .caret{transform:rotate(180deg)}
+  .dropdown a{padding:12px 36px}
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:250;opacity:0;visibility:hidden;transition:all .3s}
+  .overlay.show{opacity:1;visibility:visible}
+
+  .slides{min-height:0}
+  .slide-inner{flex-direction:column;padding:36px 0 70px;gap:30px;text-align:center}
+  .slide-text h1{font-size:2.5rem}
+  .slide-text h1 .script{font-size:3rem}
+  .ornament{margin:18px auto}
+  .slide-tag{font-size:.82rem;letter-spacing:3px}
+  .hero-btns{justify-content:center}
+  .collage{flex:none;width:100%;max-width:440px;height:340px}
+  .slider-arrow{display:none}
+
+  section{padding:64px 0}
+  .section-head h2,.what-text h2{font-size:2rem}
+  .what,.about,.contact{flex-direction:column}
+  .what-img,.about-img{width:100%;flex:none}
+  .what-img .ph{height:340px}
+  .about-img .ph{height:380px;max-width:340px;margin:0 auto}
+  .about-text{text-align:center}
+  .stats{justify-content:center}
+  .grid-3{grid-template-columns:repeat(2,1fr)}
+  .dash-line{margin-left:auto;margin-right:auto}
+}
+@media (min-width:861px){
+  .nav-close,.overlay{display:none}
+}
+@media (max-width:560px){
+  .topbar{font-size:.76rem}
+  .grid-3,.grid-4{grid-template-columns:1fr}
+  .form-row{flex-direction:column;gap:0}
+  .contact-info,.contact-form{padding:32px 22px}
+  .footer-grid{grid-template-columns:1fr}
+  .slide-text h1{font-size:2.1rem}
+  .slide-text h1 .script{font-size:2.6rem}
+  .collage{height:280px}
+  .polaroid{padding:6px 6px 26px}
+  .polaroid span{font-size:1.05rem;bottom:3px}
+  .swatch{width:76px;height:76px}
+  .finishes{gap:22px}
+  .header-left,.header-right{gap:6px}
+  .float-btns a{width:50px;height:50px}
+}
+</style>
+<script>
+function phFail(img){
+  var p = img.parentNode;
+  if (p && p.className.indexOf('noimg') === -1) { p.className += ' noimg'; }
+  img.style.display = 'none';
+}
+</script>
+</head>
+<body>
+
+<div class="topbar">Doorstep hand casting service now available &nbsp;|&nbsp; Call <a href="tel:+919583178444">9583 178444</a></div>
+
+<header>
+  <div class="container header-top">
+    <div class="header-left">
+      <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <a href="tel:+919583178444" class="header-phone"><span>Call us</span>+91 9583 178444</a>
+    </div>
+
+    <a href="#home" class="logo" aria-label="Memories Forever home">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#e7c27a"/><stop offset=".55" stop-color="#c8932e"/><stop offset="1" stop-color="#7a1f2b"/>
+          </linearGradient>
+        </defs>
+        <circle cx="32" cy="32" r="30" fill="none" stroke="url(#lg)" stroke-width="2"/>
+        <path d="M32 50c-9-6-16-12-16-20 0-5 4-9 8.5-9 3.2 0 5.8 1.8 7.5 4.5 1.7-2.7 4.3-4.5 7.5-4.5 4.5 0 8.5 4 8.5 9 0 8-7 14-16 20z" fill="url(#lg)"/>
+        <path d="M27 36v-9.5a1.6 1.6 0 013.2 0V33M30.2 32.5v-8.2a1.6 1.6 0 013.2 0v8.2M33.4 32.5V25.5a1.6 1.6 0 013.2 0v8M36.6 33.5v-5a1.6 1.6 0 013.2 0v6.5c0 4-3 7-7 7h-1c-3 0-4.6-1.4-6-3.5l-3-4.5a1.6 1.6 0 012.6-1.8L27 36" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="logo-text">
+        <b>Memories</b><i>Forever</i><small>Hand Casting Studio</small>
+      </div>
+    </a>
+
+    <div class="header-right">
+      <a href="https://wa.me/919583178444" target="_blank" rel="noopener" class="icon-btn" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 01-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.43 9.43 0 01-1.44-5.02c0-5.2 4.24-9.44 9.45-9.44 2.52 0 4.89.99 6.67 2.77a9.38 9.38 0 012.76 6.68c0 5.2-4.24 9.43-9.45 9.43zm8.04-17.48A11.3 11.3 0 0012.05.7C5.78.7.68 5.8.67 12.07c0 2 .52 3.96 1.52 5.69L.57 23.7l6.08-1.6a11.33 11.33 0 005.4 1.38h.01c6.27 0 11.38-5.1 11.38-11.37 0-3.04-1.18-5.9-3.33-8.05z"/></svg>
+      </a>
+      <a href="tel:+919583178444" class="icon-btn" aria-label="Call">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.8 19.8 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+      </a>
+      <a href="#contact" class="icon-btn hide-sm" aria-label="Enquiry">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <nav class="main-nav" id="mainNav">
+    <button class="icon-btn nav-close" id="menuClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
+    <ul class="nav-list">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#doorstep">Doorstep Casting Service</a></li>
+      <li class="has-drop">
+        <a href="#diy">DIY Kits <svg class="caret" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        <div class="dropdown">
+          <a href="#diy">Baby Hand &amp; Feet Kit</a>
+          <a href="#diy">Couple Hand Kit</a>
+          <a href="#diy">Family Hand Kit</a>
+        </div>
+      </li>
+      <li class="has-drop">
+        <a href="#about">About <svg class="caret" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        <div class="dropdown">
+          <a href="#about">Our Story</a>
+          <a href="#what">What Is Hand Casting</a>
+          <a href="#services">Our Services</a>
+        </div>
+      </li>
+      <li class="has-drop">
+        <a href="#faq">More Info <svg class="caret" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        <div class="dropdown">
+          <a href="#finishes">Finishes &amp; Frames</a>
+          <a href="#faq">FAQs</a>
+          <a href="#contact">Contact Us</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <div class="overlay" id="overlay"></div>
+</header>
+
+<!-- HERO SLIDER -->
+<section class="hero" id="home" style="padding:0">
+  <div class="slides" id="slides">
+
+    <div class="slide active">
+      <div class="container slide-inner">
+        <div class="slide-text">
+          <h1>Hands that raised you,<br><span class="script">blessings</span> that stay.</h1>
+          <div class="ornament"><svg viewBox="0 0 70 20"><path d="M2 10c8-8 14 8 22 0s14-8 22 0 14 8 22 0" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="35" cy="10" r="2.4" fill="currentColor"/></svg></div>
+          <p class="slide-tag">Parent's Casting (Ashirwad)</p>
+          <div class="hero-btns">
+            <a href="#contact" class="btn btn-primary">Book a Casting</a>
+            <a href="#services" class="btn btn-outline">Explore Services</a>
+          </div>
+        </div>
+        <div class="collage">
+          <div class="polaroid p1"><div class="ph" data-label="Parents' Hands"><img src="images/hero-parents-1.jpg" alt="Parents hand casting" onerror="phFail(this)"></div><span>Ashirwad</span></div>
+          <div class="polaroid p2"><div class="ph" data-label="Framed Gold Casting"><img src="images/hero-parents-2.jpg" alt="Gold framed hand casting" onerror="phFail(this)"></div><span>Maa</span></div>
+          <div class="polaroid p3"><div class="ph" data-label="Family Moment"><img src="images/hero-parents-3.jpg" alt="Family with casting" onerror="phFail(this)"></div><span>Blessings</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="container slide-inner">
+        <div class="slide-text">
+          <h1>Tiny hands,<br><span class="script">little feet,</span> forever.</h1>
+          <div class="ornament"><svg viewBox="0 0 70 20"><path d="M2 10c8-8 14 8 22 0s14-8 22 0 14 8 22 0" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="35" cy="10" r="2.4" fill="currentColor"/></svg></div>
+          <p class="slide-tag">Baby Hand &amp; Feet Casting</p>
+          <div class="hero-btns">
+            <a href="#contact" class="btn btn-primary">Book a Casting</a>
+            <a href="#diy" class="btn btn-outline">Shop DIY Kits</a>
+          </div>
+        </div>
+        <div class="collage">
+          <div class="polaroid p1"><div class="ph" data-label="Baby Feet"><img src="images/hero-baby-1.jpg" alt="Baby feet casting" onerror="phFail(this)"></div><span>First Steps</span></div>
+          <div class="polaroid p2"><div class="ph" data-label="Baby Hands"><img src="images/hero-baby-2.jpg" alt="Baby hand casting" onerror="phFail(this)"></div><span>Little One</span></div>
+          <div class="polaroid p3"><div class="ph" data-label="Family &amp; Baby"><img src="images/hero-baby-3.jpg" alt="Family hand casting with baby" onerror="phFail(this)"></div><span>Family</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="container slide-inner">
+        <div class="slide-text">
+          <h1>Two hands,<br><span class="script">one promise,</span> always.</h1>
+          <div class="ornament"><svg viewBox="0 0 70 20"><path d="M2 10c8-8 14 8 22 0s14-8 22 0 14 8 22 0" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="35" cy="10" r="2.4" fill="currentColor"/></svg></div>
+          <p class="slide-tag">Couple Hand Casting</p>
+          <div class="hero-btns">
+            <a href="#contact" class="btn btn-primary">Book a Casting</a>
+            <a href="#services" class="btn btn-outline">Explore Services</a>
+          </div>
+        </div>
+        <div class="collage">
+          <div class="polaroid p1"><div class="ph" data-label="Couple Hands"><img src="images/hero-couple-1.jpg" alt="Couple hand casting" onerror="phFail(this)"></div><span>Together</span></div>
+          <div class="polaroid p2"><div class="ph" data-label="Wedding Keepsake"><img src="images/hero-couple-2.jpg" alt="Wedding hand casting" onerror="phFail(this)"></div><span>Forever</span></div>
+          <div class="polaroid p3"><div class="ph" data-label="Anniversary Gift"><img src="images/hero-couple-3.jpg" alt="Anniversary casting" onerror="phFail(this)"></div><span>Always</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <button class="slider-arrow prev" id="prevSlide" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <button class="slider-arrow next" id="nextSlide" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+  <div class="slider-dots" id="dots"></div>
+</section>
+
+<!-- WHAT IS -->
+<section id="what">
+  <div class="container what">
+    <div class="what-img reveal">
+      <div class="ph" data-label="Hand Casting in Glass Dome"><img src="images/what-is-casting.jpg" alt="3D hand casting in a glass dome" onerror="phFail(this)"></div>
+    </div>
+    <div class="what-text reveal">
+      <div class="dash-line"></div>
+      <h2>What Is 3D Hand Casting?</h2>
+      <p>Hand casting turns life's special moments into detailed, lifelike sculptures you can hold, frame and pass on. The process is safe, quick and gentle on the skin, for newborns and grandparents alike.</p>
+      <p>Every piece is made by hand and can be personalised with names, dates and the finish of your choice. From baby showers to anniversaries, it's a keepsake that lasts a lifetime.</p>
+      <ul class="checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Skin-safe, body-friendly moulding material</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Captures every fingerprint, line and crease</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Custom finishes, frames and engraving</li>
+      </ul>
+      <a href="#contact" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="bg-cream">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Castings</span>
+      <h2>Moments We Preserve</h2>
+      <p>Choose a casting for every relationship and every milestone, each one handcrafted and finished with care.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card reveal">
+        <div class="ph" data-label="Baby Hand &amp; Feet"><span class="badge">Most Loved</span><img src="images/service-baby.jpg" alt="Baby hand and feet casting" onerror="phFail(this)"></div>
+        <div class="card-body"><h3>Baby Hand &amp; Feet</h3><p>Capture your newborn's tiny hands and feet before they grow. Perfect from 0 months onwards.</p>
+        <a class="card-link wa-link" data-msg="Hi, I'm interested in Baby Hand & Feet Casting." href="#">Enquire on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
+      </div>
+      <div class="card reveal">
+        <div class="ph" data-label="Couple Hand Casting"><img src="images/service-couple.jpg" alt="Couple hand casting" onerror="phFail(this)"></div>
+        <div class="card-body"><h3>Couple Hand Casting</h3><p>Hands entwined, frozen in time. A meaningful gift for weddings, engagements and anniversaries.</p>
+        <a class="card-link wa-link" data-msg="Hi, I'm interested in Couple Hand Casting." href="#">Enquire on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
+      </div>
+      <div class="card reveal">
+        <div class="ph" data-label="Parents' Casting (Ashirwad)"><img src="images/service-parents.jpg" alt="Parents casting Ashirwad" onerror="phFail(this)"></div>
+        <div class="card-body"><h3>Parents' Casting (Ashirwad)</h3><p>Preserve the blessing hands of your parents and grandparents, a tribute the whole family will treasure.</p>
+        <a class="card-link wa-link" data-msg="Hi, I'm interested in Parents' Casting (Ashirwad)." href="#">Enquire on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
+      </div>
+      <div class="card reveal">
+        <div class="ph" data-label="Family Hand Casting"><img src="images/service-family.jpg" alt="Family hand casting" onerror="phFail(this)"></div>
+        <div class="card-body"><h3>Family Hand Casting</h3><p>Three or four hands together in one sculpture: parents, children and grandparents side by side.</p>
+        <a class="card-link wa-link" data-msg="Hi, I'm interested in Family Hand Casting." href="#">Enquire on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
+      </div>
+      <div class="card reveal">
+        <div class="ph" data-label="Pet Paw Impression"><img src="images/service-pet.jpg" alt="Pet paw casting" onerror="phFail(this)"></div>
+        <div class="card-body"><h3>Pet Paw Impression</h3><p>Your furry family member deserves a keepsake too. Paw prints and casts in lovely finishes.</p>
+        <a class="card-link wa-link" data-msg="Hi, I'm interested in Pet Paw Casting." href="#">Enquire on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
+      </div>
+      <div class="card reveal">
+        <div class="ph" data-label="Frames &amp; Glass Domes"><img src="images/service-frames.jpg" alt="Casting frames and glass domes" onerror="phFail(this)"></div>
+        <div class="card-body"><h3>Frames &amp; Glass Domes</h3><p>Shadow-box frames, LED glass domes and wooden bases with name and date engraving.</p>
+        <a class="card-link wa-link" data-msg="Hi, I'd like to know about frames and glass domes." href="#">Enquire on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOORSTEP -->
+<section id="doorstep">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">We Come to You</span>
+      <h2>Doorstep Casting Service</h2>
+      <p>No travel, no stress. We bring everything to your home, take the mould in minutes, and deliver the finished piece to your door.</p>
+    </div>
+    <div class="grid grid-4 steps">
+      <div class="step reveal"><small>01</small>
+        <div class="step-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.8 19.8 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <h3>Book a Slot</h3><p>Call or WhatsApp us to choose your casting type and a convenient date.</p></div>
+      <div class="step reveal"><small>02</small>
+        <div class="step-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
+        <h3>We Visit You</h3><p>Our artist arrives at your home with all materials, ready in minutes.</p></div>
+      <div class="step reveal"><small>03</small>
+        <div class="step-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 00-4 0v5M14 10V4a2 2 0 00-4 0v6M10 10.5V6a2 2 0 00-4 0v8a8 8 0 0016 0v-2a2 2 0 00-4 0"/></svg></div>
+        <h3>Mould &amp; Cast</h3><p>A safe, gentle mould is taken. It takes only a few minutes per pose.</p></div>
+      <div class="step reveal"><small>04</small>
+        <div class="step-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-4-6-1.5S9 8 12 8zM12 8c2-4 6-4 6-1.5S15 8 12 8z"/></svg></div>
+        <h3>Delivered Home</h3><p>Your finished, framed keepsake is hand-delivered to your doorstep.</p></div>
+    </div>
+    <div class="doorstep-cta reveal">
+      <a href="tel:+919583178444" class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.8 19.8 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>Call 9583 178444</a>
+    </div>
+  </div>
+</section>
+
+<!-- DIY KITS -->
+<section id="diy" class="bg-cream">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Make It Yourself</span>
+      <h2>DIY Casting Kits</h2>
+      <p>Everything you need to create your own casting at home, with easy step-by-step instructions inside.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card reveal">
+        <div class="ph" data-label="Baby Kit"><img src="images/kit-baby.jpg" alt="Baby DIY casting kit" onerror="phFail(this)"></div>
+        <div class="card-body"><h3>Baby Hand &amp; Feet Kit</h3><p>Moulding powder, casting stone, paint and a display base. Made for newborns and toddlers.</p>
+        <a class="btn btn-gold wa-link" style="margin-top:16px;align-self:flex-start" data-msg="Hi, I want to order the Baby Hand & Feet DIY Kit." href="#">Order on WhatsApp</a></div>
+      </div>
+      <div class="card reveal">
+        <div class="ph" data-label="Couple Kit"><img src="images/kit-couple.jpg" alt="Couple DIY casting kit" onerror="phFail(this)"></div>
+        <div class="card-body"><h3>Couple Hand Kit</h3><p>A large-bucket kit for two adult hands holding together. A memorable date-night activity.</p>
+        <a class="btn btn-gold wa-link" style="margin-top:16px;align-self:flex-start" data-msg="Hi, I want to order the Couple Hand DIY Kit." href="#">Order on WhatsApp</a></div>
+      </div>
+      <div class="card reveal">
+        <div class="ph" data-label="Family Kit"><img src="images/kit-family.jpg" alt="Family DIY casting kit" onerror="phFail(this)"></div>
+        <div class="card-body"><h3>Family Hand Kit</h3><p>Extra material for three to four hands together, with metallic paint and a premium base.</p>
+        <a class="btn btn-gold wa-link" style="margin-top:16px;align-self:flex-start" data-msg="Hi, I want to order the Family Hand DIY Kit." href="#">Order on WhatsApp</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINISHES + OCCASIONS -->
+<section id="finishes">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Personalise It</span>
+      <h2>Choose Your Finish</h2>
+      <p>Every casting is hand-painted in the finish you love.</p>
+    </div>
+    <div class="finishes reveal">
+      <div class="finish"><div class="swatch f-gold"></div><span>Royal Gold</span></div>
+      <div class="finish"><div class="swatch f-silver"></div><span>Silver</span></div>
+      <div class="finish"><div class="swatch f-white"></div><span>Marble White</span></div>
+      <div class="finish"><div class="swatch f-bronze"></div><span>Antique Bronze</span></div>
+      <div class="finish"><div class="swatch f-rose"></div><span>Rose Gold</span></div>
+      <div class="finish"><div class="swatch f-copper"></div><span>Copper</span></div>
+    </div>
+
+    <div class="section-head reveal" style="margin-top:80px">
+      <span class="eyebrow">Perfect Gift For</span>
+      <h2>Every Occasion</h2>
+    </div>
+    <div class="occasions reveal">
+      <span class="occasion">Baby Shower</span>
+      <span class="occasion">Newborn</span>
+      <span class="occasion">Birthday</span>
+      <span class="occasion">Engagement</span>
+      <span class="occasion">Wedding</span>
+      <span class="occasion">Anniversary</span>
+      <span class="occasion">Parents' Day</span>
+      <span class="occasion">Retirement</span>
+      <span class="occasion">Housewarming</span>
+      <span class="occasion">In Loving Memory</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="bg-cream">
+  <div class="container about">
+    <div class="about-img reveal">
+      <div class="ph" data-label="Priyabrata Pradhan"><img src="images/priyabrata.jpg" alt="Priyabrata Pradhan" onerror="phFail(this)"></div>
+    </div>
+    <div class="about-text reveal">
+      <span class="script">Our Story</span>
+      <h2>Priyabrata Pradhan</h2>
+      <span class="role">Founder &amp; Casting Artist</span>
+      <p>Memories Forever started with a simple belief: the hands of the people we love tell our story. A baby's first grip, a couple's promise, a parent's blessing. These moments pass, but they don't have to fade.</p>
+      <p>Every casting is moulded, finished and framed by hand with patience and care, so you get a keepsake that feels as personal as the moment itself.</p>
+      <div class="stats">
+        <div class="stat"><b>100%</b><span>Handcrafted</span></div>
+        <div class="stat"><b>Skin-safe</b><span>Materials</span></div>
+        <div class="stat"><b>Doorstep</b><span>Service</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">More Info</span>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item"><button class="faq-q">Is hand casting safe for newborn babies?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>Yes. We use skin-safe, body-friendly moulding material that is gentle on delicate skin and washes off easily with water.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How long does the moulding take?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>The mould itself takes only a few minutes per pose. A full doorstep session usually finishes within an hour.</p></div></div>
+      <div class="faq-item"><button class="faq-q">When will I receive my finished casting?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>Finishing, painting and framing take some time to do properly. We'll share an exact delivery date when you book.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Can I add names and dates?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>Absolutely. Names, dates and short messages can be engraved on the frame plate or base.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Which areas do you cover for doorstep service?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>Call or WhatsApp us on 9583 178444 with your location and we'll confirm availability.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="bg-cream">
+  <div class="container contact">
+    <div class="contact-info reveal">
+      <h2>Let's Create Memories</h2>
+      <p>Book a doorstep casting, order a DIY kit, or just ask us anything.</p>
+      <div class="ci">
+        <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div><small>Contact Person</small><b>Priyabrata Pradhan</b></div>
+      </div>
+      <div class="ci">
+        <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.8 19.8 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <div><small>Call Us</small><b><a href="tel:+919583178444">+91 9583 178444</a></b></div>
+      </div>
+      <div class="ci">
+        <div class="ci-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 01-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.43 9.43 0 01-1.44-5.02c0-5.2 4.24-9.44 9.45-9.44 2.52 0 4.89.99 6.67 2.77a9.38 9.38 0 012.76 6.68c0 5.2-4.24 9.43-9.45 9.43zm8.04-17.48A11.3 11.3 0 0012.05.7C5.78.7.68 5.8.67 12.07c0 2 .52 3.96 1.52 5.69L.57 23.7l6.08-1.6a11.33 11.33 0 005.4 1.38h.01c6.27 0 11.38-5.1 11.38-11.37 0-3.04-1.18-5.9-3.33-8.05z"/></svg></div>
+        <div><small>WhatsApp</small><b><a href="https://wa.me/919583178444" target="_blank" rel="noopener">Chat with us</a></b></div>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" id="enquiryForm" novalidate>
+      <h3>Send an Enquiry</h3>
+      <p>Fill this in and it will open WhatsApp with your message ready to send.</p>
+      <div class="form-row">
+        <div class="field"><label for="fName">Your Name</label><input type="text" id="fName" placeholder="Full name"></div>
+        <div class="field"><label for="fPhone">Phone Number</label><input type="tel" id="fPhone" placeholder="10-digit mobile"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label for="fService">Interested In</label>
+          <select id="fService">
+            <option>Baby Hand &amp; Feet Casting</option>
+            <option>Couple Hand Casting</option>
+            <option>Parents' Casting (Ashirwad)</option>
+            <option>Family Hand Casting</option>
+            <option>Pet Paw Impression</option>
+            <option>DIY Kit</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field"><label for="fCity">City / Area</label><input type="text" id="fCity" placeholder="Your location"></div>
+      </div>
+      <div class="field"><label for="fMsg">Message</label><textarea id="fMsg" placeholder="Preferred date, finish, frame, etc."></textarea></div>
+      <div class="form-error" id="formError">Please enter your name and a valid 10-digit phone number.</div>
+      <button type="submit" class="btn btn-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>Send on WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <a href="#home" class="logo">
+        <svg viewBox="0 0 64 64" aria-hidden="true" style="width:46px;height:46px">
+          <circle cx="32" cy="32" r="30" fill="none" stroke="#c8932e" stroke-width="2"/>
+          <path d="M32 50c-9-6-16-12-16-20 0-5 4-9 8.5-9 3.2 0 5.8 1.8 7.5 4.5 1.7-2.7 4.3-4.5 7.5-4.5 4.5 0 8.5 4 8.5 9 0 8-7 14-16 20z" fill="#c8932e"/>
+        </svg>
+        <div class="logo-text"><b>Memories</b><i>Forever</i></div>
+      </a>
+      <p>Handcrafted 3D hand and feet castings that keep life's most precious moments with you, always.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#doorstep">Doorstep Casting</a></li>
+        <li><a href="#diy">DIY Kits</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#faq">FAQs</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Castings</h4>
+      <ul>
+        <li><a href="#services">Baby Hand &amp; Feet</a></li>
+        <li><a href="#services">Couple Hands</a></li>
+        <li><a href="#services">Parents' Ashirwad</a></li>
+        <li><a href="#services">Family Hands</a></li>
+        <li><a href="#services">Pet Paws</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Get in Touch</h4>
+      <ul>
+        <li>Priyabrata Pradhan</li>
+        <li><a href="tel:+919583178444">+91 9583 178444</a></li>
+        <li><a href="https://wa.me/919583178444" target="_blank" rel="noopener">WhatsApp Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom container">&copy; <span id="year">2026</span> Memories Forever. All rights reserved.</div>
+</footer>
+
+<div class="float-btns">
+  <a href="https://wa.me/919583178444" target="_blank" rel="noopener" class="fb-wa" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 01-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.43 9.43 0 01-1.44-5.02c0-5.2 4.24-9.44 9.45-9.44 2.52 0 4.89.99 6.67 2.77a9.38 9.38 0 012.76 6.68c0 5.2-4.24 9.43-9.45 9.43zm8.04-17.48A11.3 11.3 0 0012.05.7C5.78.7.68 5.8.67 12.07c0 2 .52 3.96 1.52 5.69L.57 23.7l6.08-1.6a11.33 11.33 0 005.4 1.38h.01c6.27 0 11.38-5.1 11.38-11.37 0-3.04-1.18-5.9-3.33-8.05z"/></svg>
+  </a>
+  <a href="tel:+919583178444" class="fb-call" aria-label="Call">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.8 19.8 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+  </a>
+</div>
+
+<script>
+/* ES5 only - works in in-app browsers */
+var WA_NUMBER = '919583178444';
+
+(function(){
+  var i;
+
+  /* Year */
+  var y = document.getElementById('year');
+  if (y) { y.innerHTML = new Date().getFullYear(); }
+
+  /* Mobile menu */
+  var nav = document.getElementById('mainNav');
+  var overlay = document.getElementById('overlay');
+  function openMenu(){ nav.className += ' open'; overlay.className += ' show'; document.body.style.overflow = 'hidden'; }
+  function closeMenu(){ nav.className = nav.className.replace(/\s*open/g, ''); overlay.className = overlay.className.replace(/\s*show/g, ''); document.body.style.overflow = ''; }
+  document.getElementById('menuOpen').addEventListener('click', openMenu);
+  document.getElementById('menuClose').addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+
+  var drops = document.querySelectorAll('.has-drop > a');
+  for (i = 0; i < drops.length; i++) {
+    drops[i].addEventListener('click', function(e){
+      if (window.innerWidth <= 860) {
+        e.preventDefault();
+        var li = this.parentNode;
+        if (li.className.indexOf('open') > -1) { li.className = li.className.replace(/\s*open/g, ''); }
+        else { li.className += ' open'; }
+      }
+    });
+  }
+  var navLinks = document.querySelectorAll('.nav-list a');
+  for (i = 0; i < navLinks.length; i++) {
+    navLinks[i].addEventListener('click', function(){
+      if (window.innerWidth <= 860 && this.parentNode.className.indexOf('has-drop') === -1) { closeMenu(); }
+    });
+  }
+
+  /* Hero slider */
+  var slides = document.querySelectorAll('#slides .slide');
+  var dotsWrap = document.getElementById('dots');
+  var current = 0, timer = null;
+  for (i = 0; i < slides.length; i++) {
+    var b = document.createElement('button');
+    b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    b.setAttribute('data-i', i);
+    if (i === 0) { b.className = 'active'; }
+    b.addEventListener('click', function(){ goTo(parseInt(this.getAttribute('data-i'), 10)); restart(); });
+    dotsWrap.appendChild(b);
+  }
+  var dots = dotsWrap.getElementsByTagName('button');
+  function goTo(n){
+    slides[current].className = 'slide';
+    dots[current].className = '';
+    current = (n + slides.length) % slides.length;
+    slides[current].className = 'slide active';
+    dots[current].className = 'active';
+  }
+  function restart(){ clearInterval(timer); timer = setInterval(function(){ goTo(current + 1); }, 5500); }
+  document.getElementById('nextSlide').addEventListener('click', function(){ goTo(current + 1); restart(); });
+  document.getElementById('prevSlide').addEventListener('click', function(){ goTo(current - 1); restart(); });
+  restart();
+
+  /* Swipe on touch */
+  var sx = 0;
+  var hero = document.getElementById('slides');
+  hero.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, false);
+  hero.addEventListener('touchend', function(e){
+    var dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 50) { goTo(dx < 0 ? current + 1 : current - 1); restart(); }
+  }, false);
+
+  /* WhatsApp links with prefilled message */
+  var wa = document.querySelectorAll('.wa-link');
+  for (i = 0; i < wa.length; i++) {
+    wa[i].setAttribute('href', 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(wa[i].getAttribute('data-msg')));
+    wa[i].setAttribute('target', '_blank');
+    wa[i].setAttribute('rel', 'noopener');
+  }
+
+  /* FAQ accordion */
+  var qs = document.querySelectorAll('.faq-q');
+  for (i = 0; i < qs.length; i++) {
+    qs[i].addEventListener('click', function(){
+      var item = this.parentNode;
+      var ans = item.querySelector('.faq-a');
+      if (item.className.indexOf('open') > -1) {
+        item.className = 'faq-item';
+        ans.style.maxHeight = '0';
+      } else {
+        item.className = 'faq-item open';
+        ans.style.maxHeight = ans.scrollHeight + 'px';
+      }
+    });
+  }
+
+  /* Enquiry form -> WhatsApp */
+  document.getElementById('enquiryForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('fName').value.replace(/^\s+|\s+$/g, '');
+    var phone = document.getElementById('fPhone').value.replace(/\D/g, '');
+    var err = document.getElementById('formError');
+    if (!name || phone.length < 10) { err.style.display = 'block'; return; }
+    err.style.display = 'none';
+    var msg = 'Hi Memories Forever,\n' +
+      'Name: ' + name + '\n' +
+      'Phone: ' + phone + '\n' +
+      'Interested in: ' + document.getElementById('fService').value + '\n' +
+      'Location: ' + (document.getElementById('fCity').value || '-') + '\n' +
+      'Message: ' + (document.getElementById('fMsg').value || '-');
+    window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
+  });
+
+  /* Scroll reveal */
+  var reveals = document.querySelectorAll('.reveal');
+  function checkReveal(){
+    var h = window.innerHeight || document.documentElement.clientHeight;
+    for (var k = 0; k < reveals.length; k++) {
+      var r = reveals[k].getBoundingClientRect();
+      if (r.top < h - 60 && reveals[k].className.indexOf(' in') === -1) { reveals[k].className += ' in'; }
+    }
+  }
+  window.addEventListener('scroll', checkReveal);
+  window.addEventListener('resize', checkReveal);
+  checkReveal();
+
+  /* Active nav on scroll */
+  var sections = ['home','doorstep','diy','about','faq'];
+  var topLinks = document.querySelectorAll('.nav-list > li > a');
+  window.addEventListener('scroll', function(){
+    var pos = window.pageYOffset + 160, active = 'home';
+    for (var s = 0; s < sections.length; s++) {
+      var el = document.getElementById(sections[s]);
+      if (el && el.offsetTop <= pos) { active = sections[s]; }
+    }
+    for (var t = 0; t < topLinks.length; t++) {
+      topLinks[t].className = topLinks[t].getAttribute('href') === '#' + active ? 'active' : '';
+    }
+  });
+})();
+</script>
+</body>
+</html>
